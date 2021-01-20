@@ -1,4 +1,4 @@
-package com.gremlinweekend.numad21f_yulin;
+package com.gremlinweekend.numad21s_yulin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +26,8 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                System.out.print("Hello World");
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }

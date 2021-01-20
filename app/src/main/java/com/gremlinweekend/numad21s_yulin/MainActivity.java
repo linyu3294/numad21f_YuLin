@@ -1,4 +1,4 @@
-package com.gremlinweekend.numad21f_yulin;
+package com.gremlinweekend.numad21s_yulin;
 
 import android.os.Bundle;
 
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.print("Hello World");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);

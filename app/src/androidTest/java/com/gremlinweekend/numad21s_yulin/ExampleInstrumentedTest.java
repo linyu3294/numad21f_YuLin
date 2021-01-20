@@ -1,4 +1,4 @@
-package com.gremlinweekend.numad21f_yulin;
+package com.gremlinweekend.numad21s_yulin;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.gremlinweekend.numad21f_yulin", appContext.getPackageName());
+        assertEquals("com.gremlinweekend.numad21s_yulin", appContext.getPackageName());
     }
 }

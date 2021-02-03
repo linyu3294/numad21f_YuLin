@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Numad21f_YuLin">
+        <activity android:name=".NewActivity"></activity>
         <activity
-            android:name="com.gremlinweekend.numad21s_yulin.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Numad21f_YuLin.NoActionBar">
             <intent-filter>

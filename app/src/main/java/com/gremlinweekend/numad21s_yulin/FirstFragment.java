@@ -1,5 +1,6 @@
 package com.gremlinweekend.numad21s_yulin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,5 +31,15 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+        view.findViewById(R.id.button_new_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity();
+            }
+        });
+    }
+    public void openNewActivity(){
+        Intent intent = new Intent(FirstFragment.this.getActivity(), NewActivity.class);
+        startActivity(intent);
     }
 }

@@ -11,32 +11,48 @@
         android:id="@+id/button_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:text="About"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_link_collector"
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
         android:id="@+id/helloWorld_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
+        android:layout_marginTop="200dp"
         android:text="Hello World"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_new_activity"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Button
         android:id="@+id/button_new_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEW ACTIVITY"
-        app:layout_constraintBottom_toTopOf="@+id/button_about"
+        android:text="New Activity"
+        app:layout_constraintBottom_toTopOf="@+id/button_link_collector"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/helloWorld_text" />
+
+    <Button
+        android:id="@+id/button_link_collector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link Collector"
+        app:layout_constraintBottom_toTopOf="@+id/button_about"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_new_activity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.gremlinweekend.numad21s_yulin.linkActivity.LinkActivity;
+
 public class FirstFragment extends Fragment {
 
     @Override
@@ -37,9 +39,17 @@ public class FirstFragment extends Fragment {
                 openNewActivity();
             }
         });
+        view.findViewById(R.id.button_link_collector).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) { openLinkActivity();}
+        });
     }
     public void openNewActivity(){
         Intent intent = new Intent(FirstFragment.this.getActivity(), NewActivity.class);
+        startActivity(intent);
+    }
+    public void openLinkActivity(){
+        Intent intent = new Intent(FirstFragment.this.getActivity(), LinkActivity.class);
         startActivity(intent);
     }
 }

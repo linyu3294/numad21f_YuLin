@@ -2,7 +2,6 @@ package com.gremlinweekend.numad21s_yulin.linkActivity;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +41,7 @@ public class RviewHolder extends RecyclerView.ViewHolder {
                 if (link != null) {
                     int position = getLayoutPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        link.onlinkSaveClick(position);
+                        link.onclickNavigate(position);
                     }
                 }
             }

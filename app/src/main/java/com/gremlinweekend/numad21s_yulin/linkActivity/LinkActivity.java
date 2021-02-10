@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.gremlinweekend.numad21s_yulin.FirstFragment;
 import com.gremlinweekend.numad21s_yulin.R;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class LinkActivity extends AppCompatActivity {
 
@@ -124,9 +125,11 @@ public class LinkActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onlinkSaveClick(int position) {
-                links.get(position).onlinkSaveClick(position);
+            public String onclickNavigate(int position) {
+                String urlString = links.get(position).onclickNavigate(position);
                 rviewAdapter.notifyItemChanged(position);
+                openBrowser(urlString);
+                return urlString;
             }
         };
         rviewAdapter.setOnItemClickListener(itemClickListener);
@@ -142,5 +145,12 @@ public class LinkActivity extends AppCompatActivity {
         links.add(position, new LinkItem(R.drawable.empty, "No Logo item", false));
         Toast.makeText(LinkActivity.this, "Add an item", Toast.LENGTH_SHORT).show();
         rviewAdapter.notifyItemInserted(position);
+    }
+
+    private void openBrowser(String urlString){
+        Intent intent = new Intent(this, WebActivity.class);
+        intent.putExtra("urlString", urlString);
+        startActivity(intent);
+        System.out.println(urlString);
     }
 }

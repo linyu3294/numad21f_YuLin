@@ -23,9 +23,7 @@ public class LinkItem implements ILink
         return linkURL;
     }
 
-    public boolean isModifying() {
-        return isModifying;
-    }
+
 
     @Override
     public void onLinkClick(int position) {
@@ -33,7 +31,7 @@ public class LinkItem implements ILink
     }
 
     @Override
-    public void onlinkSaveClick(int position) {
-        isModifying =!isModifying;
+    public String onclickNavigate(int position) {
+        return this.linkURL;
     }
 }

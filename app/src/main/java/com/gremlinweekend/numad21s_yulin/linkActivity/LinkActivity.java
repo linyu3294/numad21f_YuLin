@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gremlinweekend.numad21s_yulin.FirstFragment;
@@ -56,16 +60,14 @@ public class LinkActivity extends AppCompatActivity {
                 Toast.makeText(LinkActivity.this, "Delete an item", Toast.LENGTH_SHORT).show();
                 int position = viewHolder.getLayoutPosition();
                 links.remove(position);
-
                 rviewAdapter.notifyItemRemoved(position);
-
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void init(Bundle savedInstanceState) {
 
+    private void init(Bundle savedInstanceState) {
         initialItemData(savedInstanceState);
         createRecyclerView();
     }
@@ -92,7 +94,6 @@ public class LinkActivity extends AppCompatActivity {
                         linkURL = linkURL.substring(0, linkURL.lastIndexOf("("));
                     }
                     LinkItem link = new LinkItem(linkImage, linkURL, isModifying);
-
                     links.add(link);
                 }
             }
@@ -102,9 +103,9 @@ public class LinkActivity extends AppCompatActivity {
             LinkItem link1 = new LinkItem(R.drawable.pic_gmail_01, "https://www.gmail.com", false);
             LinkItem link2 = new LinkItem(R.drawable.pic_google_01, "https://www.google.com",  false);
             LinkItem link3 = new LinkItem(R.drawable.pic_youtube_01, "https://www.youtube.com",  false);
-            links.add(link1);
-            links.add(link2);
-            links.add(link3);
+//            links.add(link1);
+//            links.add(link2);
+//            links.add(link3);
         }
 
     }
@@ -126,10 +127,15 @@ public class LinkActivity extends AppCompatActivity {
 
             @Override
             public String onclickNavigate(int position) {
-                String urlString = links.get(position).onclickNavigate(position);
                 rviewAdapter.notifyItemChanged(position);
+                String urlString = links.get(position).onclickNavigate(position);
                 openBrowser(urlString);
                 return urlString;
+            }
+
+            @Override
+            public String setLinkURL(int position, String linkURL) {
+                return links.get(position).setLinkURL(position, linkURL);
             }
         };
         rviewAdapter.setOnItemClickListener(itemClickListener);
@@ -142,7 +148,7 @@ public class LinkActivity extends AppCompatActivity {
 
 
     private void addItem(int position) {
-        links.add(position, new LinkItem(R.drawable.empty, "No Logo item", false));
+        links.add(position, new LinkItem(R.drawable.empty, "https://", false));
         Toast.makeText(LinkActivity.this, "Add an item", Toast.LENGTH_SHORT).show();
         rviewAdapter.notifyItemInserted(position);
     }
@@ -150,7 +156,12 @@ public class LinkActivity extends AppCompatActivity {
     private void openBrowser(String urlString){
         Intent intent = new Intent(this, WebActivity.class);
         intent.putExtra("urlString", urlString);
-        startActivity(intent);
+        if (urlString.contains("https://")) {
+            startActivity(intent);
+        }else{
+            String notifyUseHTTPS = "Please include https:// in url.";
+
+        }
         System.out.println(urlString);
     }
 }

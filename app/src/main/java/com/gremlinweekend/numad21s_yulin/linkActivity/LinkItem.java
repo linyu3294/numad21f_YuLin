@@ -4,7 +4,7 @@ public class LinkItem implements ILink
 {
 
     private final int linkImage;
-    private final String linkURL;
+    private String linkURL;
     private boolean isModifying;
 
 
@@ -21,6 +21,11 @@ public class LinkItem implements ILink
 
     public String getLinkURL() {
         return linkURL;
+    }
+
+    public String setLinkURL(int position, String linkURL) {
+        this.linkURL = linkURL;
+        return this.linkURL;
     }
 
 

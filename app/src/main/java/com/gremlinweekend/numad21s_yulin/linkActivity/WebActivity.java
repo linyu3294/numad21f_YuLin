@@ -33,8 +33,6 @@ public class WebActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web);
 
         String urlString = getIntent().getStringExtra("urlString");
-
-
         WebView web = (WebView) findViewById(R.id.view_web);
 
         web.getSettings().setJavaScriptEnabled(true);

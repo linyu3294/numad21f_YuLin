@@ -14,16 +14,16 @@ public class RviewHolder extends RecyclerView.ViewHolder {
 
     public ImageView hIcon;
     public TextView hURL;
-    public Button sButton;
+    public Button goButton;
 
-    public RviewHolder(@NonNull View itemView, final ILink link) {
-        super(itemView);
+    public RviewHolder(@NonNull View linkView, final ILink link) {
+        super(linkView);
 
-        hIcon = itemView.findViewById(R.id.img_icon);
-        hURL = itemView.findViewById(R.id.text_url);
-        sButton = itemView.findViewById(R.id.button_save);
+        hIcon = linkView.findViewById(R.id.img_icon);
+        hURL = linkView.findViewById(R.id.text_url);
+        goButton = linkView.findViewById(R.id.button_go);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
+        linkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (link != null) {
@@ -35,12 +35,17 @@ public class RviewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        sButton.setOnClickListener(new View.OnClickListener() {
+
+
+        goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (link != null) {
                     int position = getLayoutPosition();
                     if (position != RecyclerView.NO_POSITION) {
+                        String newURL = hURL.getText().toString();
+                        System.out.println(newURL);
+                        link.setLinkURL(position, newURL);
                         link.onclickNavigate(position);
                     }
                 }

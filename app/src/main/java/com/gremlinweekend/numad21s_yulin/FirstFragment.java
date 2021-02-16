@@ -1,6 +1,7 @@
 package com.gremlinweekend.numad21s_yulin;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -23,7 +25,8 @@ import com.gremlinweekend.numad21s_yulin.linkActivity.LinkActivity;
 
 public class FirstFragment extends Fragment {
     protected LocationManager locationManager;
-
+    boolean access = false;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
     public View onCreateView(
@@ -44,19 +47,37 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
         view.findViewById(R.id.button_new_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openNewActivity();
             }
         });
+
         view.findViewById(R.id.button_link_collector).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) { openLinkActivity();}
         });
+
         view.findViewById(R.id.button_gps).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) { openGPSActivity();}
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(getParentFragment().getContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getParentFragment().getContext(), "You Have Access to Fine Location Permission!",
+                            Toast.LENGTH_SHORT).show();
+                    onRequestPermissionsResult(MY_PERMISSIONS_REQUEST_LOCATION,
+                            new String []{Manifest.permission.ACCESS_FINE_LOCATION},
+                            new int[]{0});
+                } else {
+                    grantLocationPermission();
+                    Toast.makeText(getParentFragment().getContext(), "Please Grant Location Access To Use This Feature!", Toast.LENGTH_SHORT).show();
+                    onRequestPermissionsResult(MY_PERMISSIONS_REQUEST_LOCATION,
+                            new String []{Manifest.permission.ACCESS_FINE_LOCATION},
+                            new int[]{1});
+                }
+                }
         });
 
 
@@ -71,74 +92,31 @@ public class FirstFragment extends Fragment {
     }
 
     public void openGPSActivity(){
-        Intent intent = new Intent(FirstFragment.this.getActivity(), GpsActivity.class);
-        checkLocationPermission();
+            Intent intent = new Intent(FirstFragment.this.getActivity(), GpsActivity.class);
+            startActivity(intent);
     }
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this.getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this.getContext())
-//                        .setTitle(R.string.title_location_permission)
-                        .setMessage("Location Permission")
-                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(getActivity(),
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();
 
 
-            } else {
+
+    public void grantLocationPermission() {
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
+        System.out.println(requestCode);
+        System.out.println(grantResults[0]);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(this.getContext(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        //Request location updates:
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 400, 1, (LocationListener) this);
-                        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                    }
-
+                   openGPSActivity();
                 } else {
-
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
 
@@ -146,6 +124,8 @@ public class FirstFragment extends Fragment {
                 return;
             }
 
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 

@@ -18,12 +18,10 @@ public class WebActivity extends AppCompatActivity {
 
     // SSL Error Tolerant Web View Client
     private class SSLWebViewClient extends WebViewClient {
-
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed(); // Ignore SSL certificate errors
         }
-
     }
 
 

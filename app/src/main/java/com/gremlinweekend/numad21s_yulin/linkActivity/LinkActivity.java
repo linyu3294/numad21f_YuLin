@@ -160,7 +160,6 @@ public class LinkActivity extends AppCompatActivity {
             startActivity(intent);
         }else{
             String notifyUseHTTPS = "Please include https:// in url.";
-
         }
         System.out.println(urlString);
     }

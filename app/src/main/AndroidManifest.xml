@@ -2,13 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gremlinweekend.numad21s_yulin">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<!--    <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" /> -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Numad21f_YuLin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GpsActivity"></activity>
+        <activity android:name=".WebServiceActivity"></activity>
+        <activity android:name=".GpsActivity" />
         <activity
             android:name=".linkActivity.WebActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />

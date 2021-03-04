@@ -8,16 +8,26 @@
 
 
     <Button
+        android:id="@+id/button_web_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WEB SERVICE"
+        app:layout_constraintBottom_toTopOf="@+id/button_about"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_link_collector" />
+
+    <Button
         android:id="@+id/button_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="About"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_gps"
+        app:layout_constraintBottom_toTopOf="@+id/button_gps"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_new_activity"
-        app:layout_constraintVertical_bias="0.525" />
+        app:layout_constraintTop_toBottomOf="@+id/button_web_service" />
 
     <Button
         android:id="@+id/button_gps"
@@ -27,45 +37,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_about"
-        app:layout_constraintTop_toBottomOf="@+id/button_link_collector"
-        app:layout_constraintVertical_bias="0.525" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_about" />
 
     <Button
         android:id="@+id/button_link_collector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
         android:text="Link Collector"
+        app:layout_constraintBottom_toTopOf="@+id/button_web_service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_new_activity"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_new_activity" />
 
     <Button
         android:id="@+id/button_new_activity"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="288dp"
+        android:layout_height="wrap_content"
         android:text="New Activity"
-        app:layout_constraintEnd_toStartOf="@+id/button_link_collector"
+        app:layout_constraintBottom_toTopOf="@+id/button_link_collector"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/helloWorld_text" />
 
     <TextView
         android:id="@+id/helloWorld_text"
-        android:layout_width="96dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Hello World"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_new_activity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

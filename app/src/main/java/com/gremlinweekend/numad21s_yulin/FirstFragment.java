@@ -60,6 +60,12 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) { openLinkActivity();}
         });
 
+        view.findViewById(R.id.button_web_service).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) { openWebServiceActivity();}
+
+        });
+
         view.findViewById(R.id.button_gps).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -82,6 +88,12 @@ public class FirstFragment extends Fragment {
 
 
     }
+
+    private void openWebServiceActivity() {
+        Intent intent = new Intent(FirstFragment.this.getActivity(), WebServiceActivity.class);
+        startActivity(intent);
+    }
+
     public void openNewActivity(){
         Intent intent = new Intent(FirstFragment.this.getActivity(), NewActivity.class);
         startActivity(intent);
